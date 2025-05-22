@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Masterclass - Professional Recipes</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --light-bg: #f9f9f9;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .recipe-content {
+            padding: 1.5rem;
+        }
+
+        .recipe-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .recipe-excerpt {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-grid {
+                grid-template-columns: 1fr;
+                padding: 0 2%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Gourmet Masterclass</h1>
+        <p>Professional Recipes from World-Class Chefs</p>
+    </header>
+
+    <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Appetizers</button>
+        <button class="filter-btn">Main Courses</button>
+        <button class="filter-btn">Desserts</button>
+    </div>
+
+    <div class="recipe-grid">
+        <!-- Recipe 1 -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445" alt="Grilled Salmon" class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 35 mins</span>
+                    <span>🍴 4 servings</span>
+                </div>
+                <h2 class="recipe-title">Honey-Glazed Grilled Salmon</h2>
+                <p class="recipe-excerpt">Perfectly grilled Atlantic salmon with a sweet honey glaze and fresh dill garnish.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
+
+        <!-- Recipe 2 -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975" alt="Beef Wellington" class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 2 hrs</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Beef Wellington</h2>
+                <span class="badge">Chef's Special</span>
+                <p class="recipe-excerpt">Classic British dish with beef tenderloin wrapped in puff pastry.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
+
+        <!-- Recipe 3 - Truffle Risotto -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1627667928346-07e6f3ac42a3" alt="Truffle Risotto" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 45 mins</span>
+            <span>🍴 4 servings</span>
+        </div>
+        <h2 class="recipe-title">Truffle Risotto</h2>
+        <span class="badge">Vegetarian</span>
+        <p class="recipe-excerpt">Creamy Arborio rice with black truffle shavings and Parmesan cheese.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 4 - Duck Confit -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1625943917428-9e5cff7b8a0f" alt="Duck Confit" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 3 hrs</span>
+            <span>🍴 6 servings</span>
+        </div>
+        <h2 class="recipe-title">Duck Confit</h2>
+        <span class="badge">French Classic</span>
+        <p class="recipe-excerpt">Slow-cooked duck legs in their own fat with crispy skin and tender meat.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 5 - Lobster Thermidor -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1574926054530-5096e4f8e8e3" alt="Lobster Thermidor" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 1 hr 15 mins</span>
+            <span>🍴 2 servings</span>
+        </div>
+        <h2 class="recipe-title">Lobster Thermidor</h2>
+        <p class="recipe-excerpt">Lobster meat in creamy cheese sauce, gratinated with mustard and brandy.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 6 - Vegetarian Paella -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1627667928346-07e6f3ac42a3" alt="Vegetarian Paella" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 50 mins</span>
+            <span>🍴 6 servings</span>
+        </div>
+        <h2 class="recipe-title">Vegetarian Paella</h2>
+        <span class="badge">Vegan Option</span>
+        <p class="recipe-excerpt">Spanish rice dish with artichokes, bell peppers, and smoked paprika.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 7 - Beef Bourguignon -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108" alt="Beef Bourguignon" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 3.5 hrs</span>
+            <span>🍴 8 servings</span>
+        </div>
+        <h2 class="recipe-title">Beef Bourguignon</h2>
+        <span class="badge">Slow Cooked</span>
+        <p class="recipe-excerpt">French beef stew braised in red wine with mushrooms and pearl onions.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 8 - Chicken Cordon Bleu -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1562967914-608f82629710" alt="Chicken Cordon Bleu" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 1 hr</span>
+            <span>🍴 4 servings</span>
+        </div>
+        <h2 class="recipe-title">Chicken Cordon Bleu</h2>
+        <p class="recipe-excerpt">Stuffed chicken breast with ham and Swiss cheese, breaded and baked.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 9 - Tiramisu -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1610462275440-6635e0467b0b" alt="Tiramisu" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 4 hrs (incl. chilling)</span>
+            <span>🍴 12 servings</span>
+        </div>
+        <h2 class="recipe-title">Tiramisu</h2>
+        <span class="badge">No-Bake</span>
+        <p class="recipe-excerpt">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 10 - Crème Brûlée -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1565800119702-f0a0e06a30fa" alt="Crème Brûlée" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 4 hrs</span>
+            <span>🍴 6 servings</span>
+        </div>
+        <h2 class="recipe-title">Crème Brûlée</h2>
+        <span class="badge">French Classic</span>
+        <p class="recipe-excerpt">Rich vanilla custard with caramelized sugar crust.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 11 - Beef Tartare -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1610475035993-6c0395a4af53" alt="Beef Tartare" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 20 mins</span>
+            <span>🍴 2 servings</span>
+        </div>
+        <h2 class="recipe-title">Beef Tartare</h2>
+        <span class="badge">Raw</span>
+        <p class="recipe-excerpt">Hand-chopped premium beef with capers, shallots, and quail egg.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 12 - Coq au Vin -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1610360147092-5bcc7bdcfdc5" alt="Coq au Vin" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 2.5 hrs</span>
+            <span>🍴 6 servings</span>
+        </div>
+        <h2 class="recipe-title">Coq au Vin</h2>
+        <span class="badge">Wine-Braised</span>
+        <p class="recipe-excerpt">French chicken stew cooked in red wine with mushrooms and bacon.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 13 - Ratatouille -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8" alt="Ratatouille" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 1.5 hrs</span>
+            <span>🍴 6 servings</span>
+        </div>
+        <h2 class="recipe-title">Ratatouille</h2>
+        <span class="badge">Vegetarian</span>
+        <p class="recipe-excerpt">Provençal vegetable stew with zucchini, eggplant, and tomatoes.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 14 - Bouillabaisse -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1630914386741-1a0a0e5b2d4e" alt="Bouillabaisse" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 1 hr 45 mins</span>
+            <span>🍴 8 servings</span>
+        </div>
+        <h2 class="recipe-title">Bouillabaisse</h2>
+        <span class="badge">Seafood</span>
+        <p class="recipe-excerpt">Traditional Provençal fish stew with saffron and garlic rouille.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+
+<!-- Recipe 15 - Chocolate Soufflé -->
+<article class="recipe-card">
+    <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df" alt="Chocolate Soufflé" class="recipe-image">
+    <div class="recipe-content">
+        <div class="recipe-meta">
+            <span>⏲ 45 mins</span>
+            <span>🍴 6 servings</span>
+        </div>
+        <h2 class="recipe-title">Chocolate Soufflé</h2>
+        <span class="badge">Baked</span>
+        <p class="recipe-excerpt">Light and airy chocolate dessert with molten center, served warm.</p>
+        <a href="#" class="btn">View Recipe</a>
+    </div>
+</article>
+    </div>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentic Pad Thai | Food & Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles (same as before) */
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ff8e8e;
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --success-color: #40c057;
+            --warning-color: #fcc419;
+            --text-color: #495057;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --cuisine-color: #f06595; /* Special color for cuisine pages */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--cuisine-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e64980;
+            transform: translateY(-2px);
+        }
+
+        /* Header Styles (same as before) */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        /* Recipe Detail Styles */
+        .recipe-hero {
+            padding: 3rem 0;
+            background-color: #fff9fb; /* Light pink background for cuisine pages */
+        }
+
+        .recipe-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .recipe-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 400px;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recipe-header {
+            margin-bottom: 2rem;
+        }
+
+        .recipe-title {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-subtitle {
+            font-style: italic;
+            color: #868e96;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-meta-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .recipe-meta-item i {
+            margin-right: 0.5rem;
+            color: var(--cuisine-color);
+        }
+
+        .recipe-description {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cuisine-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .cuisine-flag {
+            width: 40px;
+            height: 25px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cuisine-origin {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--cuisine-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .ingredients-section, .instructions-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--cuisine-color);
+        }
+
+        .ingredients-list {
+            list-style: none;
+        }
+
+        .ingredient-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ingredient-item:last-child {
+            border-bottom: none;
+        }
+
+        .ingredient-item i {
+            margin-right: 0.8rem;
+            color: var(--cuisine-color);
+        }
+
+        .instructions-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .instruction-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            counter-increment: step-counter;
+        }
+
+        .instruction-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--cuisine-color);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .special-equipment {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 3rem;
+        }
+
+        .equipment-list {
+            list-style: none;
+        }
+
+        .equipment-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .equipment-item i {
+            color: var(--cuisine-color);
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .wine-pairing {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 3rem;
+        }
+
+        .wine-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .wine-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .wine-icon {
+            font-size: 1.5rem;
+            color: var(--cuisine-color);
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+
+        .wine-info h4 {
+            margin-bottom: 0.3rem;
+            color: var(--dark-color);
+        }
+
+        .wine-info p {
+            font-size: 0.9rem;
+            color: #868e96;
+        }
+
+        /* Footer (same as before) */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .recipe-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .recipe-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .recipe-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .recipe-title {
+                font-size: 2rem;
+            }
+            
+            .recipe-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-utensils"></i>Food & Service
+            </a>
+            
+            <nav class="navbar">
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="search" placeholder="Search recipes...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline">Log In</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Recipe Hero Section -->
+    <section class="recipe-hero">
+        <div class="container">
+            <div class="recipe-container">
+                <div class="recipe-image">
+                    <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Authentic Pad Thai">
+                </div>
+                
+                <div class="recipe-header">
+                    <h1 class="recipe-title">Authentic Pad Thai</h1>
+                    <p class="recipe-subtitle">The national dish of Thailand with perfect balance of sweet, sour, and savory flavors</p>
+                    
+                    <div class="cuisine-info">
+                        <img src="https://flagcdn.com/w40/th.png" alt="Thailand flag" class="cuisine-flag">
+                        <span class="cuisine-origin">Thai Cuisine</span>
+                    </div>
+                    
+                    <span class="difficulty">Intermediate</span>
+                    
+                    <div class="recipe-meta">
+                        <div class="recipe-meta-item">
+                            <i class="fas fa-clock"></i> 30 mins
+                        </div>
+                        <div class="recipe-meta-item">
+                            <i class="fas fa-user-friends"></i> 2 servings
+                        </div>
+                        <div class="recipe-meta-item">
+                            <i class="fas fa-star"></i> 4.9 (287)
+                        </div>
+                    </div>
+                    
+                    <p class="recipe-description">
+                        This authentic Pad Thai recipe comes straight from the streets of Bangkok. Made with rice noodles, shrimp, tofu, and a signature tamarind-based sauce, it's a perfect balance of sweet, sour, and savory flavors. The key to perfect Pad Thai lies in the preparation and high heat cooking technique.
+                    </p>
+                    
+                    <button class="btn btn-primary">
+                        <i class="fas fa-print"></i> Print Recipe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Content -->
+    <div class="container">
+        <div class="recipe-content">
+            <div class="ingredients-section">
+                <h2 class="section-title">Ingredients</h2>
+                <h3 class="subsection-title">For the Pad Thai:</h3>
+                <ul class="ingredients-list">
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>8 oz (225g) rice noodles (medium width)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>2 tbsp vegetable oil</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>2 cloves garlic, minced</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1/2 cup firm tofu, cubed</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>8-10 medium shrimp, peeled and deveined</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1 egg</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1 cup bean sprouts</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>2 green onions, sliced</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1/4 cup crushed peanuts</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Lime wedges for serving</span>
+                    </li>
+                </ul>
+                
+                <h3 class="subsection-title" style="margin-top: 1.5rem;">For the Sauce:</h3>
+                <ul class="ingredients-list">
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>3 tbsp tamarind paste</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>3 tbsp palm sugar (or brown sugar)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>2 tbsp fish sauce</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1 tsp chili powder (optional)</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="instructions-section">
+                <h2 class="section-title">Instructions</h2>
+                <ol class="instructions-list">
+                    <li class="instruction-step">
+                        Soak rice noodles in room temperature water for 30-40 minutes until pliable but still firm. Drain and set aside.
+                    </li>
+                    <li class="instruction-step">
+                        Prepare the sauce by mixing tamarind paste, palm sugar, fish sauce, and chili powder in a small bowl. Stir until sugar dissolves.
+                    </li>
+                    <li class="instruction-step">
+                        Heat a wok or large skillet over high heat. Add 1 tbsp oil and swirl to coat. Add garlic and stir-fry for 10 seconds until fragrant.
+                    </li>
+                    <li class="instruction-step">
+                        Add tofu and shrimp. Stir-fry for 1-2 minutes until shrimp turns pink. Push everything to one side of the wok.
+                    </li>
+                    <li class="instruction-step">
+                        Add remaining 1 tbsp oil to the empty space and crack in the egg. Let it set slightly, then scramble and mix with other ingredients.
+                    </li>
+                    <li class="instruction-step">
+                        Add drained noodles and sauce. Use two utensils to toss and stir constantly for 2-3 minutes until noodles are tender and sauce is absorbed.
+                    </li>
+                    <li class="instruction-step">
+                        Add bean sprouts and green onions. Toss for another 30 seconds until sprouts are slightly wilted but still crisp.
+                    </li>
+                    <li class="instruction-step">
+                        Transfer to serving plates. Garnish with crushed peanuts, lime wedges, and additional bean sprouts. Serve immediately.
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="special-equipment">
+            <h2 class="section-title">Special Equipment</h2>
+            <ul class="equipment-list">
+                <li class="equipment-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>Wok or large skillet (essential for proper stir-frying)</span>
+                </li>
+                <li class="equipment-item">
+                    <i class="fas fa-mortar-pestle"></i>
+                    <span>Mortar and pestle (for crushing peanuts)</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="wine-pairing">
+            <h2 class="section-title">Wine Pairing</h2>
+            <div class="wine-item">
+                <div class="wine-icon">
+                    <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <div class="wine-info">
+                    <h4>Riesling (Off-Dry)</h4>
+                    <p>The slight sweetness balances the spicy and sour flavors of Pad Thai</p>
+                </div>
+            </div>
+            <div class="wine-item">
+                <div class="wine-icon">
+                    <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <div class="wine-info">
+                    <h4>Gewürztraminer</h4>
+                    <p>Its aromatic profile complements the complex flavors of Thai cuisine</p>
+                </div>
+            </div>
+            <div class="wine-item">
+                <div class="wine-icon">
+                    <i class="fas fa-beer"></i>
+                </div>
+                <div class="wine-info">
+                    <h4>Thai Beer (Singha or Chang)</h4>
+                    <p>Traditional pairing that refreshes the palate between bites</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class
