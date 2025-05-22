@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gourmet Masterclass - Professional Recipes</title>
+
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #e67e22;
-            --light-bg: #f9f9f9;
-            --text-color: #333;
+            --primary-color: #ff6b6b;
+            --secondary-color: #ff8e8e;
+            --dark-color: #333;
+            --light-color: #f8f9fa;
+            --success-color: #40c057;
+            --warning-color: #fcc419;
+            --text-color: #495057;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -19,19 +27,203 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--light-bg);
+            background-color: #fff;
         }
 
-        .header {
-            background: var(--primary-color);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .search-container {
+            position: relative;
+            margin-right: 1rem;
+        }
+
+        .search-container input {
+            padding: 0.5rem 1rem;
+            padding-right: 2.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+            width: 200px;
+            transition: var(--transition);
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            width: 250px;
+        }
+
+        .search-container button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .auth-buttons .btn {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+        }
+
+
+
 
         .recipe-grid {
             display: grid;
@@ -46,7 +238,7 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -126,6 +318,88 @@
             background: var(--primary-color);
             color: white;
         }
+ /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         @media (max-width: 768px) {
             .recipe-grid {
@@ -135,10 +409,35 @@
         }
     </style>
 </head>
+
 <body>
-    <header class="header">
-        <h1>Gourmet Masterclass</h1>
-        <p>Professional Recipes from World-Class Chefs</p>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-utensils"></i>Food & Service
+            </a>
+
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="popular.html">Popular</a></li>
+                    <li><a href="healthy.html">Healthy & Diet</a></li>
+                    <li><a href="cuisine.html">Cuisine</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="search" placeholder="Search recipes...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline">Log In</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <div class="filter-bar">
@@ -151,21 +450,24 @@
     <div class="recipe-grid">
         <!-- Recipe 1 -->
         <article class="recipe-card">
-            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445" alt="Grilled Salmon" class="recipe-image">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445" alt="Grilled Salmon"
+                class="recipe-image">
             <div class="recipe-content">
                 <div class="recipe-meta">
                     <span>⏲ 35 mins</span>
                     <span>🍴 4 servings</span>
                 </div>
                 <h2 class="recipe-title">Honey-Glazed Grilled Salmon</h2>
-                <p class="recipe-excerpt">Perfectly grilled Atlantic salmon with a sweet honey glaze and fresh dill garnish.</p>
+                <p class="recipe-excerpt">Perfectly grilled Atlantic salmon with a sweet honey glaze and fresh dill
+                    garnish.</p>
                 <a href="#" class="btn">View Recipe</a>
             </div>
         </article>
 
         <!-- Recipe 2 -->
         <article class="recipe-card">
-            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975" alt="Beef Wellington" class="recipe-image">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975" alt="Beef Wellington"
+                class="recipe-image">
             <div class="recipe-content">
                 <div class="recipe-meta">
                     <span>⏲ 2 hrs</span>
@@ -179,197 +481,268 @@
         </article>
 
         <!-- Recipe 3 - Truffle Risotto -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1627667928346-07e6f3ac42a3" alt="Truffle Risotto" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 45 mins</span>
-            <span>🍴 4 servings</span>
-        </div>
-        <h2 class="recipe-title">Truffle Risotto</h2>
-        <span class="badge">Vegetarian</span>
-        <p class="recipe-excerpt">Creamy Arborio rice with black truffle shavings and Parmesan cheese.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1627667928346-07e6f3ac42a3" alt="Truffle Risotto"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 45 mins</span>
+                    <span>🍴 4 servings</span>
+                </div>
+                <h2 class="recipe-title">Truffle Risotto</h2>
+                <span class="badge">Vegetarian</span>
+                <p class="recipe-excerpt">Creamy Arborio rice with black truffle shavings and Parmesan cheese.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 4 - Duck Confit -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1625943917428-9e5cff7b8a0f" alt="Duck Confit" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 3 hrs</span>
-            <span>🍴 6 servings</span>
-        </div>
-        <h2 class="recipe-title">Duck Confit</h2>
-        <span class="badge">French Classic</span>
-        <p class="recipe-excerpt">Slow-cooked duck legs in their own fat with crispy skin and tender meat.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 4 - Duck Confit -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1625943917428-9e5cff7b8a0f" alt="Duck Confit"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 3 hrs</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Duck Confit</h2>
+                <span class="badge">French Classic</span>
+                <p class="recipe-excerpt">Slow-cooked duck legs in their own fat with crispy skin and tender meat.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 5 - Lobster Thermidor -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1574926054530-5096e4f8e8e3" alt="Lobster Thermidor" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 1 hr 15 mins</span>
-            <span>🍴 2 servings</span>
-        </div>
-        <h2 class="recipe-title">Lobster Thermidor</h2>
-        <p class="recipe-excerpt">Lobster meat in creamy cheese sauce, gratinated with mustard and brandy.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 5 - Lobster Thermidor -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1574926054530-5096e4f8e8e3" alt="Lobster Thermidor"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 1 hr 15 mins</span>
+                    <span>🍴 2 servings</span>
+                </div>
+                <h2 class="recipe-title">Lobster Thermidor</h2>
+                <p class="recipe-excerpt">Lobster meat in creamy cheese sauce, gratinated with mustard and brandy.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 6 - Vegetarian Paella -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1627667928346-07e6f3ac42a3" alt="Vegetarian Paella" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 50 mins</span>
-            <span>🍴 6 servings</span>
-        </div>
-        <h2 class="recipe-title">Vegetarian Paella</h2>
-        <span class="badge">Vegan Option</span>
-        <p class="recipe-excerpt">Spanish rice dish with artichokes, bell peppers, and smoked paprika.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 6 - Vegetarian Paella -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1627667928346-07e6f3ac42a3" alt="Vegetarian Paella"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 50 mins</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Vegetarian Paella</h2>
+                <span class="badge">Vegan Option</span>
+                <p class="recipe-excerpt">Spanish rice dish with artichokes, bell peppers, and smoked paprika.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 7 - Beef Bourguignon -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108" alt="Beef Bourguignon" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 3.5 hrs</span>
-            <span>🍴 8 servings</span>
-        </div>
-        <h2 class="recipe-title">Beef Bourguignon</h2>
-        <span class="badge">Slow Cooked</span>
-        <p class="recipe-excerpt">French beef stew braised in red wine with mushrooms and pearl onions.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 7 - Beef Bourguignon -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108" alt="Beef Bourguignon"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 3.5 hrs</span>
+                    <span>🍴 8 servings</span>
+                </div>
+                <h2 class="recipe-title">Beef Bourguignon</h2>
+                <span class="badge">Slow Cooked</span>
+                <p class="recipe-excerpt">French beef stew braised in red wine with mushrooms and pearl onions.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 8 - Chicken Cordon Bleu -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1562967914-608f82629710" alt="Chicken Cordon Bleu" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 1 hr</span>
-            <span>🍴 4 servings</span>
-        </div>
-        <h2 class="recipe-title">Chicken Cordon Bleu</h2>
-        <p class="recipe-excerpt">Stuffed chicken breast with ham and Swiss cheese, breaded and baked.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 8 - Chicken Cordon Bleu -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710" alt="Chicken Cordon Bleu"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 1 hr</span>
+                    <span>🍴 4 servings</span>
+                </div>
+                <h2 class="recipe-title">Chicken Cordon Bleu</h2>
+                <p class="recipe-excerpt">Stuffed chicken breast with ham and Swiss cheese, breaded and baked.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 9 - Tiramisu -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1610462275440-6635e0467b0b" alt="Tiramisu" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 4 hrs (incl. chilling)</span>
-            <span>🍴 12 servings</span>
-        </div>
-        <h2 class="recipe-title">Tiramisu</h2>
-        <span class="badge">No-Bake</span>
-        <p class="recipe-excerpt">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 9 - Tiramisu -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1610462275440-6635e0467b0b" alt="Tiramisu" class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 4 hrs (incl. chilling)</span>
+                    <span>🍴 12 servings</span>
+                </div>
+                <h2 class="recipe-title">Tiramisu</h2>
+                <span class="badge">No-Bake</span>
+                <p class="recipe-excerpt">Classic Italian dessert with coffee-soaked ladyfingers and mascarpone cream.
+                </p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 10 - Crème Brûlée -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1565800119702-f0a0e06a30fa" alt="Crème Brûlée" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 4 hrs</span>
-            <span>🍴 6 servings</span>
-        </div>
-        <h2 class="recipe-title">Crème Brûlée</h2>
-        <span class="badge">French Classic</span>
-        <p class="recipe-excerpt">Rich vanilla custard with caramelized sugar crust.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 10 - Crème Brûlée -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1565800119702-f0a0e06a30fa" alt="Crème Brûlée"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 4 hrs</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Crème Brûlée</h2>
+                <span class="badge">French Classic</span>
+                <p class="recipe-excerpt">Rich vanilla custard with caramelized sugar crust.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 11 - Beef Tartare -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1610475035993-6c0395a4af53" alt="Beef Tartare" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 20 mins</span>
-            <span>🍴 2 servings</span>
-        </div>
-        <h2 class="recipe-title">Beef Tartare</h2>
-        <span class="badge">Raw</span>
-        <p class="recipe-excerpt">Hand-chopped premium beef with capers, shallots, and quail egg.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 11 - Beef Tartare -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1610475035993-6c0395a4af53" alt="Beef Tartare"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 20 mins</span>
+                    <span>🍴 2 servings</span>
+                </div>
+                <h2 class="recipe-title">Beef Tartare</h2>
+                <span class="badge">Raw</span>
+                <p class="recipe-excerpt">Hand-chopped premium beef with capers, shallots, and quail egg.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 12 - Coq au Vin -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1610360147092-5bcc7bdcfdc5" alt="Coq au Vin" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 2.5 hrs</span>
-            <span>🍴 6 servings</span>
-        </div>
-        <h2 class="recipe-title">Coq au Vin</h2>
-        <span class="badge">Wine-Braised</span>
-        <p class="recipe-excerpt">French chicken stew cooked in red wine with mushrooms and bacon.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 12 - Coq au Vin -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1610360147092-5bcc7bdcfdc5" alt="Coq au Vin"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 2.5 hrs</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Coq au Vin</h2>
+                <span class="badge">Wine-Braised</span>
+                <p class="recipe-excerpt">French chicken stew cooked in red wine with mushrooms and bacon.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 13 - Ratatouille -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8" alt="Ratatouille" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 1.5 hrs</span>
-            <span>🍴 6 servings</span>
-        </div>
-        <h2 class="recipe-title">Ratatouille</h2>
-        <span class="badge">Vegetarian</span>
-        <p class="recipe-excerpt">Provençal vegetable stew with zucchini, eggplant, and tomatoes.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 13 - Ratatouille -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8" alt="Ratatouille"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 1.5 hrs</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Ratatouille</h2>
+                <span class="badge">Vegetarian</span>
+                <p class="recipe-excerpt">Provençal vegetable stew with zucchini, eggplant, and tomatoes.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 14 - Bouillabaisse -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1630914386741-1a0a0e5b2d4e" alt="Bouillabaisse" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 1 hr 45 mins</span>
-            <span>🍴 8 servings</span>
-        </div>
-        <h2 class="recipe-title">Bouillabaisse</h2>
-        <span class="badge">Seafood</span>
-        <p class="recipe-excerpt">Traditional Provençal fish stew with saffron and garlic rouille.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
+        <!-- Recipe 14 - Bouillabaisse -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1630914386741-1a0a0e5b2d4e" alt="Bouillabaisse"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 1 hr 45 mins</span>
+                    <span>🍴 8 servings</span>
+                </div>
+                <h2 class="recipe-title">Bouillabaisse</h2>
+                <span class="badge">Seafood</span>
+                <p class="recipe-excerpt">Traditional Provençal fish stew with saffron and garlic rouille.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
 
-<!-- Recipe 15 - Chocolate Soufflé -->
-<article class="recipe-card">
-    <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df" alt="Chocolate Soufflé" class="recipe-image">
-    <div class="recipe-content">
-        <div class="recipe-meta">
-            <span>⏲ 45 mins</span>
-            <span>🍴 6 servings</span>
+        <!-- Recipe 15 - Chocolate Soufflé -->
+        <article class="recipe-card">
+            <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df" alt="Chocolate Soufflé"
+                class="recipe-image">
+            <div class="recipe-content">
+                <div class="recipe-meta">
+                    <span>⏲ 45 mins</span>
+                    <span>🍴 6 servings</span>
+                </div>
+                <h2 class="recipe-title">Chocolate Soufflé</h2>
+                <span class="badge">Baked</span>
+                <p class="recipe-excerpt">Light and airy chocolate dessert with molten center, served warm.</p>
+                <a href="#" class="btn">View Recipe</a>
+            </div>
+        </article>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <!-- About Column -->
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">Food & Service</a>
+                    <p>Discover, create, and share delicious recipes from around the world. Our mission is to make
+                        cooking accessible and enjoyable for everyone.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="healthy.html">Healthy Eating</a></li>
+                        <li><a href="cuisine.html">World Cuisine</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories Column -->
+                <div class="footer-links">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Vegetarian</a></li>
+                        <li><a href="#">Vegan</a></li>
+                        <li><a href="#">Gluten-Free</a></li>
+                        <li><a href="#">Keto</a></li>
+                        <li><a href="#">Quick Meals</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-links">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> foorandservices@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +91 8695254567</li>
+                        <li><i class="fas fa-map-marker-alt"></i>Barasat North 24 Parganas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 Food & Service. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms
+                        of Service</a></p>
+            </div>
         </div>
-        <h2 class="recipe-title">Chocolate Soufflé</h2>
-        <span class="badge">Baked</span>
-        <p class="recipe-excerpt">Light and airy chocolate dessert with molten center, served warm.</p>
-        <a href="#" class="btn">View Recipe</a>
-    </div>
-</article>
-    </div>
+    </footer>
 </body>
+
 </html>
